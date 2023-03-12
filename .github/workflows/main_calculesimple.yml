@@ -31,20 +31,9 @@ jobs:
         with:
           name: java-app
           path: '${{ github.workspace }}/target/*.jar'
-      - name: Quality check
-        uses: sonarsource
-        env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
       - name: Run tests
         run: ./mvnw test
-
-      - name: Notify teams
-        uses: microsoft/teams-notify@v1
-        with:
-                title: Build status
-                summary: Build completed successfully
 
   deploy:
     runs-on: windows-latest
